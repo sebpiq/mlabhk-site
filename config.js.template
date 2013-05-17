@@ -1,0 +1,10 @@
+var config = module.exports = {}
+
+config.static = {}
+config.static.root = '/'
+
+config.root = '/home/spiquemal/mlab-site'
+
+config.server = {}
+config.server.port = 3000
+config.server.secret = 'oyIUyiy_èçèb6787'
