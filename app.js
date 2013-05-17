@@ -1,7 +1,6 @@
 var async = require('async')
   , express = require('express')
   , socketio = require('socket.io')
-  , server = require('http').Server()
   , expressServ = require('./servers/express')
   , socketIoServ = require('./servers/socketio')
   , config = require('./config')
