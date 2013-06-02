@@ -3,8 +3,12 @@ var config = module.exports = {}
 config.static = {}
 config.static.root = '/'
 
-config.root = '/home/spiquemal/mlab-site'
+config.root = '/path/to/mlabhk-site'
 
 config.server = {}
 config.server.port = 3000
-config.server.secret = 'oyIUyiy_èçèb6787'
+config.server.secret = '*********'
+
+config.facebook = {}
+config.facebook.appId = '*********'
+config.facebook.appSecret = '**********'

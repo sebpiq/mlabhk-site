@@ -1,6 +1,7 @@
 var express = require('express')
   , path = require('path')
   , config = require('../config')
+  , Facebook = require('facebook-node-sdk')
 
 exports.start = function(app, callback) {
 
@@ -17,12 +18,26 @@ exports.start = function(app, callback) {
     app.use(express.methodOverride())
     app.use(express.cookieParser(config.server.secret))
     app.use(express.session())
-    app.use(express.static(path.join(config.root, 'public')))
+    app.use(express.static(path.join(config.root, 'public'))),
+    app.use(Facebook.middleware({
+      appId: config.facebook.appId,
+      secret: config.facebook.appSecret
+    })),
     app.use(app.router)
   })
 
-  app.get('/', function(req, res) {
+  app.get('/', Facebook.loginRequired(), function(req, res) {
     res.render('index', {})
+  })
+
+  app.get('/news', Facebook.loginRequired(), function(req, res) {
+
+    req.facebook.api('/me', function(err, data) {//'/154757661202257', function(err, data) {
+      //if (err) throw err
+      console.log(err, data) // => { id: ... }
+      res.send('')
+    })
+
   })
 
   callback(null)
